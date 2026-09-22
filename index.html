@@ -1,17 +1,4 @@
-<?php
-// ========================================
-// GAME SERVER / PHP
-// ========================================
 
-session_start();
-
-// Create a temporary player ID
-if (!isset($_SESSION["player_id"])) {
-    $_SESSION["player_id"] = "player_" . rand(1000, 9999);
-}
-
-$playerID = $_SESSION["player_id"];
-?>
 
 <!DOCTYPE html>
 <html lang="en">
