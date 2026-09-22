@@ -10,104 +10,277 @@ body {
     height: 100%;
     overflow: hidden;
 
-    background: #10131a;
-
     font-family:
         Arial,
         Helvetica,
         sans-serif;
-}
 
-#game-container {
-    width: 100vw;
-    height: 100vh;
-
-    position: relative;
-
-    overflow: hidden;
-}
-
-#gameCanvas {
-    position: absolute;
-
-    left: 0;
-    top: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background: #151a22;
-
-    image-rendering: pixelated;
-}
-
-/* ---------------- HUD ---------------- */
-
-#hud {
-    position: absolute;
-
-    left: 0;
-    top: 0;
-
-    width: 100%;
-    height: 100%;
-
-    pointer-events: none;
+    background: #080b11;
 
     color: white;
 }
 
-/* TOP */
-
-.hud-top {
-    position: absolute;
-
-    top: 20px;
-    left: 20px;
-    right: 20px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+button,
+input {
+    font-family: inherit;
 }
 
-.game-title {
-    font-size: 24px;
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =====================================================
+   APP
+===================================================== */
+
+#app {
+    width: 100vw;
+    height: 100vh;
+
+    position: relative;
+}
+
+
+/* =====================================================
+   HUB
+===================================================== */
+
+.screen {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+
+    inset: 0;
+}
+
+#hubScreen {
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            #263347 0%,
+            #101722 35%,
+            #070a10 80%
+        );
+}
+
+.hub-background {
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0.35;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 60px 60px;
+
+    transform:
+        perspective(500px)
+        rotateX(55deg)
+        scale(1.5);
+
+    transform-origin: center bottom;
+}
+
+.hub-content {
+    position: absolute;
+
+    width: 420px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    z-index: 2;
+}
+
+
+/* LOGO */
+
+.logo {
+    font-size: 48px;
 
     font-weight: 900;
 
-    letter-spacing: 5px;
+    letter-spacing: 10px;
 
     text-shadow:
-        0 3px 0 #000,
-        0 0 10px rgba(255,255,255,0.2);
+        0 5px 25px rgba(0,0,0,0.7);
 }
 
-.objective-counter {
-    background: rgba(15,18,25,0.85);
-
-    border: 1px solid rgba(255,255,255,0.15);
-
-    padding: 12px 18px;
-
-    border-radius: 8px;
-
-    font-size: 13px;
-
-    letter-spacing: 1px;
+.logo span {
+    font-weight: 300;
 }
 
-#objectives {
-    font-weight: bold;
+.logo.small {
+    font-size: 30px;
+
+    margin-bottom: 25px;
 }
 
-/* PLAYER */
+.subtitle {
+    margin-top: 8px;
 
-.player-info {
+    color: #8d99aa;
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+}
+
+
+/* CHARACTER */
+
+.character-preview {
+    position: relative;
+
+    width: 180px;
+    height: 210px;
+
+    margin: 20px 0 10px;
+}
+
+.preview-shadow {
     position: absolute;
 
-    left: 20px;
-    bottom: 20px;
+    width: 130px;
+    height: 25px;
+
+    left: 25px;
+    bottom: 12px;
+
+    background: rgba(0,0,0,0.45);
+
+    border-radius: 50%;
+
+    filter: blur(5px);
+}
+
+.character {
+    position: absolute;
+
+    width: 70px;
+    height: 150px;
+
+    left: 55px;
+    bottom: 25px;
+}
+
+.character .head {
+    position: absolute;
+
+    width: 42px;
+    height: 42px;
+
+    top: 5px;
+    left: 14px;
+
+    background: #e5b894;
+
+    border-radius: 10px;
+}
+
+.character .hair {
+    position: absolute;
+
+    width: 44px;
+    height: 16px;
+
+    top: 1px;
+    left: 13px;
+
+    background: #151515;
+
+    border-radius: 10px 10px 3px 3px;
+
+    z-index: 2;
+}
+
+.character .body {
+    position: absolute;
+
+    width: 52px;
+    height: 65px;
+
+    left: 9px;
+    top: 45px;
+
+    background: #4d83e8;
+
+    border-radius: 7px;
+}
+
+.character .arm {
+    position: absolute;
+
+    width: 13px;
+    height: 57px;
+
+    top: 48px;
+
+    background: #e5b894;
+
+    border-radius: 8px;
+}
+
+.character .arm.left {
+    left: 0;
+}
+
+.character .arm.right {
+    right: 0;
+}
+
+.character .leg {
+    position: absolute;
+
+    width: 20px;
+    height: 55px;
+
+    top: 106px;
+
+    background: #1d2736;
+
+    border-radius: 5px;
+}
+
+.character .leg.left {
+    left: 12px;
+}
+
+.character .leg.right {
+    right: 12px;
+}
+
+
+/* PLAYER CARD */
+
+.player-card {
+    width: 100%;
 
     display: flex;
 
@@ -115,62 +288,440 @@ body {
 
     gap: 12px;
 
-    padding: 10px 14px;
+    padding: 12px 15px;
 
-    background: rgba(15,18,25,0.9);
+    margin-bottom: 15px;
 
-    border: 1px solid rgba(255,255,255,0.12);
+    background:
+        rgba(12,16,24,0.8);
 
-    border-radius: 8px;
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    border-radius: 10px;
+
+    backdrop-filter: blur(12px);
 }
 
-.avatar {
-    width: 40px;
-    height: 40px;
+.avatar-small {
+    width: 42px;
+    height: 42px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    background: #252c38;
+    background: #222b39;
 
-    border-radius: 6px;
-
-    font-size: 22px;
+    border-radius: 8px;
 }
 
-#player-name {
+.player-name-display {
     font-size: 14px;
 
-    font-weight: bold;
-
-    margin-bottom: 6px;
+    font-weight: 700;
 }
 
-.health-bar {
-    width: 140px;
-    height: 8px;
+.player-level {
+    margin-top: 4px;
 
-    background: #333943;
+    color: #7d8a9d;
 
-    border-radius: 20px;
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+
+/* BUTTONS */
+
+.main-button {
+    width: 100%;
+
+    height: 55px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #4f83ed;
+
+    color: white;
+
+    font-weight: 800;
+
+    font-size: 15px;
+
+    letter-spacing: 3px;
+
+    box-shadow:
+        0 8px 25px rgba(79,131,237,0.25);
+
+    transition:
+        transform 0.15s,
+        filter 0.15s;
+}
+
+.main-button:hover {
+    filter: brightness(1.12);
+
+    transform: translateY(-2px);
+}
+
+.secondary-buttons {
+    display: flex;
+
+    gap: 10px;
+
+    width: 100%;
+
+    margin-top: 10px;
+}
+
+.secondary-buttons button {
+    flex: 1;
+
+    height: 42px;
+
+    border:
+        1px solid rgba(255,255,255,0.1);
+
+    border-radius: 8px;
+
+    background:
+        rgba(20,25,34,0.8);
+
+    color: #aeb9c8;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+}
+
+.secondary-buttons button:hover {
+    background: #202936;
+
+    color: white;
+}
+
+
+/* =====================================================
+   USERNAME
+===================================================== */
+
+#usernameScreen {
+    background:
+        radial-gradient(
+            circle,
+            #1d293b,
+            #080b11 70%
+        );
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.username-panel {
+    width: 400px;
+
+    padding: 40px;
+
+    background:
+        rgba(12,16,24,0.9);
+
+    border:
+        1px solid rgba(255,255,255,0.1);
+
+    border-radius: 14px;
+
+    text-align: center;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.5);
+}
+
+.username-panel h1 {
+    font-size: 20px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+}
+
+.username-panel p {
+    color: #8793a5;
+
+    font-size: 13px;
+
+    margin-bottom: 25px;
+}
+
+#usernameInput {
+    width: 100%;
+
+    height: 50px;
+
+    padding: 0 15px;
+
+    border:
+        1px solid #303a49;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    background: #121821;
+
+    color: white;
+
+    font-size: 15px;
+
+    margin-bottom: 10px;
+}
+
+#usernameInput:focus {
+    border-color: #4f83ed;
+}
+
+#usernameMessage {
+    height: 25px;
+
+    font-size: 11px;
+
+    color: #ef8b8b;
+}
+
+
+/* =====================================================
+   GAME
+===================================================== */
+
+#gameScreen {
+    position: absolute;
+
+    inset: 0;
+
+    background: #151b24;
+}
+
+#gameCanvas {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    image-rendering: pixelated;
+}
+
+
+/* =====================================================
+   GAME HUD
+===================================================== */
+
+#gameHUD {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+}
+
+.hud-top {
+    position: absolute;
+
+    left: 20px;
+    right: 20px;
+    top: 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.hud-logo {
+    font-size: 17px;
+
+    font-weight: 900;
+
+    letter-spacing: 4px;
+
+    text-shadow:
+        0 3px 10px black;
+}
+
+.objective-box {
+    display: flex;
+
+    gap: 15px;
+
+    align-items: center;
+
+    padding: 10px 15px;
+
+    background:
+        rgba(10,14,21,0.88);
+
+    border:
+        1px solid rgba(255,255,255,0.1);
+
+    border-radius: 8px;
+
+    backdrop-filter: blur(10px);
+}
+
+.objective-box span {
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    color: #7e8a9b;
+}
+
+.objective-box strong {
+    font-size: 15px;
+}
+
+
+/* PLAYER HUD */
+
+.player-hud {
+    position: absolute;
+
+    bottom: 20px;
+    left: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px;
+
+    background:
+        rgba(10,14,21,0.9);
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    border-radius: 9px;
+}
+
+.hud-avatar {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #222a36;
+
+    border-radius: 7px;
+}
+
+.hud-details {
+    width: 160px;
+}
+
+#hudUsername {
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+.role-label {
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    color: #718096;
+
+    margin-top: 3px;
+
+    margin-bottom: 7px;
+}
+
+.health-background {
+    width: 100%;
+    height: 7px;
+
+    background: #29303b;
+
+    border-radius: 10px;
 
     overflow: hidden;
 }
 
-#health-fill {
+.health-fill {
     width: 100%;
     height: 100%;
 
-    background: #4ade80;
+    background: #48d681;
 
     transition: width 0.2s;
 }
 
-/* INSTRUCTIONS */
 
-#interaction {
+/* CONTROLS */
+
+.controls {
+    position: absolute;
+
+    right: 20px;
+    bottom: 20px;
+
+    display: flex;
+
+    gap: 8px;
+}
+
+.control {
+    min-width: 70px;
+
+    padding: 8px 10px;
+
+    text-align: center;
+
+    background:
+        rgba(10,14,21,0.75);
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    border-radius: 7px;
+}
+
+.control b {
+    display: block;
+
+    font-size: 10px;
+}
+
+.control span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #687588;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+}
+
+
+/* INTERACTION */
+
+.interaction-prompt {
     position: absolute;
 
     bottom: 20px;
@@ -178,15 +729,87 @@ body {
 
     transform: translateX(-50%);
 
-    background: rgba(15,18,25,0.8);
-
-    border: 1px solid rgba(255,255,255,0.1);
-
-    padding: 10px 18px;
+    padding: 9px 16px;
 
     border-radius: 20px;
 
-    font-size: 12px;
+    background:
+        rgba(10,14,21,0.75);
 
-    color: #cbd5e1;
+    color: #aab5c4;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+
+/* ROUND MESSAGE */
+
+.round-message {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    padding: 25px 35px;
+
+    background:
+        rgba(8,11,17,0.94);
+
+    border:
+        1px solid rgba(255,255,255,0.12);
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,0.5);
+}
+
+#roundMessageTitle {
+    font-size: 20px;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+}
+
+#roundMessageText {
+    color: #8d99aa;
+
+    margin-top: 8px;
+
+    font-size: 12px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .hub-content {
+        width: 85%;
+    }
+
+    .logo {
+        font-size: 35px;
+    }
+
+    .username-panel {
+        width: 90%;
+        padding: 30px 20px;
+    }
+
+    .controls {
+        display: none;
+    }
+
+    .interaction-prompt {
+        bottom: 80px;
+    }
+
 }
